@@ -9,16 +9,16 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'C:\ryan\git\PoshRestApiWrapper\PoshRestApiWrapper\PoshRestApiWrapper.psm1'
+# RootModule = ''
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion = '0.0.2'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core'
 
 # ID used to uniquely identify this module
-GUID = '557cc0e8-15f4-4b4c-875d-65f3f235ad61'
+GUID = '2a8a94c9-ac46-47dc-a608-72ab448695af'
 
 # Author of this module
 Author = 'Ryan Biernbaum'
@@ -66,7 +66,12 @@ PowerShellVersion = '7.0'
 # FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-# NestedModules = @()
+NestedModules = @(
+    'Private\Get-ApiConfiguration.ps1'
+    'Private\New-Uri.ps1'
+    'Public\Invoke-ApiMethod.ps1'
+    'Public\Set-ApiConfiguration.ps1'
+)
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(

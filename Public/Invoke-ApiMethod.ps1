@@ -43,7 +43,7 @@ function Invoke-ApiMethod {
             }
             $RestParam['Uri'] = New-Uri -BaseUri $BaseUri -Path $Path -Query $Query
             $RestParam['Headers'] = $Headers
-            $ShouldProcess = $PSCmdlet.ShouldProcess( "$( [PSCustomObject] $RestParam )", 'Invoke-RestMethod' )
+            $ShouldProcess = $PSCmdlet.ShouldProcess( $RestParam.Uri, $RestParam.Method )
             if( $ShouldProcess ) {
                 $Content = Invoke-RestMethod @RestParam | Write-Output
                 $OutputContent = $Content
@@ -55,6 +55,6 @@ function Invoke-ApiMethod {
             if( $PaginatedEndpoint ) {
                 $Page++
             }
-        } until( $ShouldProcess -eq $false -or $PaginatedEndpoint -ne $true -or $Page -gt $MaximumPages -or $PaginationStopCondition.InvokeReturnAsIs() ?? $true )
+        } while( $ShouldProcess -eq $true -and $PaginatedEndpoint -and $Page -lt $MaximumPages -and $PaginationStopCondition.InvokeReturnAsIs() -eq $false )
     }
 }

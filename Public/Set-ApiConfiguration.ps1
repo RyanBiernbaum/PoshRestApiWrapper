@@ -10,9 +10,6 @@ function Set-ApiConfiguration {
         [Parameter()] [scriptblock] $PaginationStopCondition = { },
         [Parameter()] [hashtable] $ExtraRestParameters = @{ }
     )
-    if( $null -eq $Script:ApiConfig ) {
-        $Script:ApiConfig = [System.Collections.Generic.Dictionary[string,hashtable]]::new()
-    }
     $Script:ApiConfig[$ApiName] = @{
         BaseUri                 = $BaseUri
         BaseHeaders             = $BaseHeaders

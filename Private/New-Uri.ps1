@@ -1,5 +1,6 @@
 
 function New-Uri {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Justification='Function does not change system state')]
     [CmdletBinding(PositionalBinding)]
     [OutputType([uri])]
     param(

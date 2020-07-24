@@ -1,5 +1,6 @@
 
 function Set-ApiConfiguration {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions', '', Justification='Function does not change system state')]
     [CmdletBinding(PositionalBinding=$false)]
     param(
         [Parameter(Mandatory=$true,Position=0)] [string] $ApiName,

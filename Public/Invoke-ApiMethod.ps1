@@ -10,6 +10,7 @@ function Invoke-ApiMethod {
         [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName)] [string] $Path,
         [Parameter(ValueFromPipelineByPropertyName)] [hashtable] $Query = @{ },
         [Parameter(ValueFromPipelineByPropertyName)] [psobject] $Body,
+        [Parameter(ValueFromPipelineByPropertyName)] [int] [ValidateRange(1,[int]::MaxValue)] $MaximumBodyJsonDepth = 10,
         [Parameter()] [Microsoft.PowerShell.Commands.WebRequestMethod] $Method = 'Get',
         [Parameter()] [hashtable] $Headers = @{ },
         [Parameter()] [hashtable] $ExtraRestParameters = @{ },
@@ -33,7 +34,7 @@ function Invoke-ApiMethod {
         $RestParam['Method'] = $Method
         if( $PSBoundParameters.ContainsKey('Body') ) {
             $RestParam['ContentType'] = 'application/json'
-            $RestParam['Body'] = $Body | ConvertTo-Json -EscapeHandling EscapeNonAscii -Compress -AsArray:($Body -is [array])
+            $RestParam['Body'] = $Body | ConvertTo-Json -Depth $MaximumBodyJsonDepth -EscapeHandling EscapeNonAscii -Compress -AsArray:($Body -is [array])
         }
 
         $Page = 1

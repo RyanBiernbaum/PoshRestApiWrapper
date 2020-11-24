@@ -1,9 +1,10 @@
 
 Describe 'New-Uri' {
     BeforeAll {
-        [IO.Path]::Combine( $PSCommandPath, '..', '..', 'PoshRestApiWrapper.psd1' ) | Import-Module -Force
+        Join-Path $PSCommandPath '..' 'TestHelper.psm1' | Import-Module -Force -ErrorAction Stop
+        Reset-Environment
     }
-    InModuleScope PoshRestApiWrapper {
+    InModuleScope -ModuleName 'PoshRestApiWrapper' {
         Context 'From BaseUri and Path' {
             It "Given -BaseUri '<BaseUri>' and -Path '<Path>', it returns <Expected>" -TestCases @(
                 @{ BaseUri = 'http://sitewithoutpath.com/'     ; Path = '/test/path'; Expected = [uri] 'http://sitewithoutpath.com/test/path' }

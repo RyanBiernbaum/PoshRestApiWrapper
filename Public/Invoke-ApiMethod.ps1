@@ -10,7 +10,7 @@ function Invoke-ApiMethod {
         [Parameter(Mandatory=$true,ValueFromPipelineByPropertyName)] [string] $Path,
         [Parameter(ValueFromPipelineByPropertyName)] [hashtable] $Query = @{ },
         [Parameter(ValueFromPipelineByPropertyName)] [psobject] $Body,
-        [Parameter(ValueFromPipelineByPropertyName)] [int] [ValidateRange(1,[int]::MaxValue)] $MaximumBodyJsonDepth = 10,
+        [Parameter()] [int] [ValidateRange(1,[int]::MaxValue)] $MaximumBodyJsonDepth = 10,
         [Parameter()] [Microsoft.PowerShell.Commands.WebRequestMethod] $Method = 'Get',
         [Parameter()] [hashtable] $Headers = @{ },
         [Parameter()] [hashtable] $ExtraRestParameters = @{ },
